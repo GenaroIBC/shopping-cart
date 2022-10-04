@@ -1,0 +1,19 @@
+.cart_product {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+
+  border-left: 15px solid crimson;
+  border-radius: 10px;
+
+  background-color: teal;
+}
+
+.cart_product > * {
+  margin: auto;
+}
+
+.product_quantity {
+  font-size: 1.8rem;
+}

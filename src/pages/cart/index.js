@@ -1,14 +1,15 @@
-import { ProductCard } from "./components/ProductCard";
-import style from "../../styles/Products.module.css";
+import style from "../../styles/Cart.module.css";
+import { CartProduct } from "./components/CartProduct";
 
-export default function Products({ products = [] }) {
+export default function Cart({ products = [] }) {
+  console.log(products);
   return (
     <main>
-      <h1>Products catalog:</h1>
+      <h1>Cart</h1>
 
-      <section className={style.products_card_container}>
+      <section className={style.cart}>
         {products.map(product => (
-          <ProductCard {...product} />
+          <CartProduct {...product} />
         ))}
       </section>
     </main>
@@ -16,7 +17,6 @@ export default function Products({ products = [] }) {
 }
 
 export async function getServerSideProps() {
-  // TODO: connect to mongoDB through mongoose and get products data
   const products = [
     { name: "Laptop Small", price: 766.45 },
     { name: "IPhone 5' 10.9", price: 229.04 },
