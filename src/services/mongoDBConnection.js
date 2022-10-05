@@ -5,7 +5,7 @@ let isConnected = false;
 
 export function mongoDBConnection() {
   if (!isConnected) {
-    mongoose.connect(URI).then(console.log);
+    mongoose.connect(URI).then(() => console.log("MongoDB connected!!"));
     isConnected = true;
   }
 }
