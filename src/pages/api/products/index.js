@@ -5,7 +5,7 @@ import {
 
 import { mongoDBConnection } from "services/mongoDBConnection";
 
-mongoDBConnection();
+mongoDBConnection(process.env.SHOPCART_DB_URL);
 
 export default async function handler(req, res) {
   const { method, body } = req;

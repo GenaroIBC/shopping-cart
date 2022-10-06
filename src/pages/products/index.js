@@ -1,5 +1,6 @@
 import { ProductCard } from "./components/ProductCard";
-import style from "../../styles/Products.module.css";
+import style from "styles/Products.module.css";
+import { v4 as uuid } from "uuid";
 
 export default function Products({ products = [] }) {
   return (
@@ -8,7 +9,7 @@ export default function Products({ products = [] }) {
 
       <section className={style.products_card_container}>
         {products.map(product => (
-          <ProductCard {...product} />
+          <ProductCard key={uuid()} {...product} />
         ))}
       </section>
     </main>
@@ -16,12 +17,8 @@ export default function Products({ products = [] }) {
 }
 
 export async function getServerSideProps() {
-  // TODO: connect to mongoDB through mongoose and get products data
-  const products = [
-    { name: "Laptop Small", price: 766.45 },
-    { name: "IPhone 5' 10.9", price: 229.04 },
-    { name: "Smart TV Large", price: 1029.99 },
-  ];
+  const response = await fetch(process.env.PRODUCTS_API_URL);
+  const products = await response.json();
 
   return {
     props: {

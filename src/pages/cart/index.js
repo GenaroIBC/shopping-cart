@@ -1,3 +1,4 @@
+import { v4 as uuid } from "uuid";
 import style from "../../styles/Cart.module.css";
 import { CartProduct } from "./components/CartProduct";
 
@@ -9,7 +10,7 @@ export default function Cart({ products = [] }) {
 
       <section className={style.cart}>
         {products.map(product => (
-          <CartProduct {...product} />
+          <CartProduct key={uuid()} {...product} />
         ))}
       </section>
     </main>
@@ -17,11 +18,8 @@ export default function Cart({ products = [] }) {
 }
 
 export async function getServerSideProps() {
-  const products = [
-    { name: "Laptop Small", price: 766.45 },
-    { name: "IPhone 5' 10.9", price: 229.04 },
-    { name: "Smart TV Large", price: 1029.99 },
-  ];
+  const response = await fetch(process.env.SHOPCART_API_URL);
+  const products = await response.json();
 
   return {
     props: {

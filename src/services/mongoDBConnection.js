@@ -1,11 +1,12 @@
 import mongoose from "mongoose";
 
-const URI = "mongodb://localhost:27017/shopping-cart";
 let isConnected = false;
 
-export function mongoDBConnection() {
-  if (!isConnected) {
-    mongoose.connect(URI).then(() => console.log("MongoDB connected!!"));
+export function mongoDBConnection(uri = "") {
+  if (!isConnected && uri) {
+    mongoose
+      .connect(uri)
+      .then(() => console.log(`MongoDB connected in ${uri}!!`));
     isConnected = true;
   }
 }
